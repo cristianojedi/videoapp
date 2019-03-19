@@ -35,14 +35,14 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def destroy
-    @video.destroy
+    @video.destroy(params[:id])
     head :ok
   end
 
   private
 
   def set_video
-    @video = Video.find_by(id: params[:id], user: current_user)
+    @video = current_user.videos.where(id: params[:id])
   end
 
   def video_params
