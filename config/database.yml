@@ -6,3 +6,6 @@ default: &default
 development:
   <<: *default
   database: videoapp_development
+test:
+  <<: *default
+  database: videoapp_test
