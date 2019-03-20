@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::VideosController, type: :controller do
+RSpec.describe VideosController, type: :controller do
   describe 'usuário não autorizado' do
     it 'responde 302' do
       video = create(:video)
@@ -17,7 +17,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'GET index' do
       it 'rota' do
-        is_expected.to route(:get, '/api/v1/videos').to(action: :index)
+        is_expected.to route(:get, '/videos').to(action: :index)
       end
 
       it 'responde 200' do
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'GET show' do
       it 'rota' do
-        is_expected.to route(:get, '/api/v1/videos/1').to(action: :show, id: 1)
+        is_expected.to route(:get, '/videos/1').to(action: :show, id: 1)
       end
 
       it 'responde 200' do
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'GET list' do
       it 'rota' do
-        is_expected.to route(:get, '/api/v1/videos/list').to(action: :list)
+        is_expected.to route(:get, '/videos/list').to(action: :list)
       end
 
       it 'responde 200' do
@@ -77,7 +77,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'POST create' do
       it 'rota' do
-        is_expected.to route(:post, '/api/v1/videos').to(action: :create)
+        is_expected.to route(:post, '/videos').to(action: :create)
       end
 
       it 'resposta 201' do
@@ -114,7 +114,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'PUT update' do
       it 'rota' do
-        is_expected.to route(:put, '/api/v1/videos/1').to(action: :update, id: 1)
+        is_expected.to route(:put, '/videos/1').to(action: :update, id: 1)
       end
 
       it 'resposta 200' do
@@ -159,7 +159,7 @@ RSpec.describe Api::V1::VideosController, type: :controller do
 
     describe 'DELETE destroy' do
       it 'rota' do
-        is_expected.to route(:delete, '/api/v1/videos/1').to(action: :destroy, id: 1)
+        is_expected.to route(:delete, '/videos/1').to(action: :destroy, id: 1)
       end
     end
   end

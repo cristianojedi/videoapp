@@ -1,4 +1,4 @@
-class Api::V1::VideosController < ApplicationController
+class VideosController < ApplicationController
   before_action :set_video, only: %i[show update destroy]
   skip_before_action :verify_authenticity_token
 
