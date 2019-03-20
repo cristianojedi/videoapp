@@ -10,5 +10,5 @@
   <%= @video.url %>
 </p>
 
-<%= link_to 'Alterar', edit_video_path(@video) %> |
-<%= link_to 'Voltar', list_videos_path %>
+<%= link_to 'Alterar', edit_video_path(@video), class: 'btn btn-primary' %>
+<%= link_to 'Voltar', list_videos_path, class: 'btn btn-secondary' %>
