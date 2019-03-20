@@ -31,7 +31,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       if @video.save
-        format.html { redirect_to @video, notice: 'Video cadastrado com sucesso.' }
+        format.html { redirect_to list_videos_path, notice: 'Vídeo cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @video }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class VideosController < ApplicationController
   def update
     respond_to do |format|
       if @video.update(video_params)
-        format.html { redirect_to action: :show, notice: 'Video alterado com sucesso.' }
+        format.html { redirect_to list_videos_path, notice: 'Vídeo alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @video }
       else
         format.html { render :edit }
@@ -65,8 +65,13 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    @video.destroy(params[:id])
-    head :ok
+    @video.destroy
+    respond_to do |format|
+      format.html { redirect_to list_videos_path, notice: 'Vídeo excluído com sucesso.' }
+      format.json { head :no_content }
+    end
+    # @video.destroy(params[:id])
+    # head :ok
   end
 
   private

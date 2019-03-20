@@ -1,6 +1,5 @@
-<h1>Editing Video</h1>
+<h1>Alteração Vídeo</h1>
 
 <%= render 'form', video: @video %>
-
-<%= link_to 'Detalhar', @video %> |
-<%= link_to 'Voltar', list_videos_path %>
+<br>
+<%= link_to "<i class='fas fa-undo-alt'></i> Voltar".html_safe, list_videos_path, class: 'btn btn-secondary' %>

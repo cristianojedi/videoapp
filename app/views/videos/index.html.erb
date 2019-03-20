@@ -1,29 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Videos</h1>
+<h1>Vizualização de Vídeos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
 
-  <tbody>
+  <div class="row">
     <% @videos.each do |video| %>
-      <tr>
-        <td><%= video.name %></td>
-        <td><%= video.url %></td>
-        <td><%= link_to 'Detalhar', video %></td>
-        <td><%= link_to 'Alterar', edit_video_path(video) %></td>
-        <td><%= link_to 'Excluir', video, method: :delete, data: { confirm: 'Deseja excluir o video?' } %></td>
-      </tr>
+      <div class="col-md-12">
+        <br>
+        <br>
+        <div class="card text-center">
+          <div class="card-header">
+            <%= video.name %>
+          </div>
+          <div class="card-body">
+            <video
+              id="my_video_1"
+              class="video-js"
+              style="margin: 0 auto;"
+              controls
+              preload="auto"
+              width= "800"
+              data-setup='{}'>
+              <source
+                src= "<%= video.url %>"
+                type="application/x-mpegURL">
+              </video>
+              <p class="lead text-center">
+                Visualizações: 6
+              </p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Novo Video', new_video_path %>
+  </div>
+</div>
