@@ -6,6 +6,10 @@ ruby '2.5.3'
 # Autenticação
 gem 'devise'
 
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+# gem 'bootstrap-sass'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use postgresql as the database for Active Record
