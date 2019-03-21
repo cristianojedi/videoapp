@@ -1,29 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Acervo de Vídeos</h1>
+<h1>Meus Vídeos</h1>
 
 <%= link_to "<i class='fas fa-plus-circle'></i> Novo".html_safe, new_video_path, class: 'btn btn-primary' %>
 <br>
 <br>
-
 <div class="container">
   <div class="row">
     <% if @videos.count > 0 %>
       <% @videos.each do |video| %>
-
         <div class="col-md-6">
-
-          <div class="card">
+          <br>
+          <div class="card text-center">
             <div class="card-header">
               <strong>Nome:</strong>
               <%= video.name %>
             </div>
-
-            <div class="card-content text-center">
+            <div class="card-body">
               <div class="wrapper">
                 <div class="videocontent">
                   <video
-                    id="my_video_1"
                     class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"
                     preload="auto"
                     data-setup='{"fluid": true}'>

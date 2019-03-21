@@ -18,6 +18,10 @@ class VideosController < ApplicationController
     # @video = Video.find(params[:id])
   end
 
+  def view
+    @video = Video.find(params[:id])
+  end
+
   def new
     @video = Video.new
   end
@@ -28,9 +32,6 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params.merge(user: current_user))
-
-    p @video
-
     respond_to do |format|
       if @video.save
         format.html { redirect_to list_videos_path, notice: 'Vídeo cadastrado com sucesso.' }
@@ -84,6 +85,6 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:name, :url)
+    params.require(:video).permit(:name, :url, :count_views)
   end
 end
