@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: %i[show update edit destroy]
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def index
     # @videos = Video.all

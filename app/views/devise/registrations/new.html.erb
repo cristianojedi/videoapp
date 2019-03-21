@@ -1,29 +1,40 @@
-<h2>Sign up</h2>
+<div class="login-form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation' }) do |f| %>
+    <% if resource.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= I18n.t("errors.messages.not_saved",
+                    count: resource.errors.count,
+                    resource: resource.class.model_name.human.downcase)
+          %>
+        </h2>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <h2 class="text-center">Cadastrar</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, placeholder: 'E-mail', class: 'form-control', required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="form-group">
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> caracteres mínimos)</em>
+      <% end %><br />
+      <%= f.password_field :password, placeholder: 'Senha', class: 'form-control', required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group">
+      <%= f.password_field :password_confirmation, placeholder: 'Senha Confirmação', class: 'form-control', required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="form-group text-center">
+      <%= f.button '<i class="fas fa-save"></i> Cadastrar'.html_safe, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
