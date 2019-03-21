@@ -5,33 +5,41 @@
 <div class="container">
 
   <div class="row">
-    <% @videos.each do |video| %>
-      <div class="col-md-12">
-        <br>
-        <br>
-        <div class="card text-center">
-          <div class="card-header">
-            <%= video.name %>
-          </div>
-          <div class="card-body">
-            <video
-              id="my_video_1"
-              class="video-js"
-              style="margin: 0 auto;"
-              controls
-              preload="auto"
-              width= "800"
-              data-setup='{}'>
-              <source
-                src= "<%= video.url %>"
-                type="application/x-mpegURL">
-              </video>
-              <p class="lead text-center">
-                Visualizações: 6
-              </p>
+    <% if @videos.count > 0 %>
+      <% @videos.each do |video| %>
+        <div class="col-md-12">
+          <br>
+          <br>
+          <div class="card text-center">
+            <div class="card-header">
+              <%= video.name %>
+            </div>
+            <div class="card-body">
+              <div class="wrapper">
+                <div class="videocontent">
+                  <video
+                    id="my_video_1"
+                    class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    width= "800"
+                    data-setup='{"fluid": true}'>
+                    <source
+                      src= "<%= video.url %>"
+                      type="application/x-mpegURL">
+                    </video>
+                    <br>
+                    <p class="lead text-center">
+                      Visualizações: 6
+                    </p>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+    Não existe(m) vídeo(s) para visualizar!
     <% end %>
   </div>
 </div>

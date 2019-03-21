@@ -5,24 +5,31 @@
 <%= link_to "<i class='fas fa-plus-circle'></i> Novo".html_safe, new_video_path, class: 'btn btn-primary' %>
 <br>
 <br>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">Url</th>
-      <th scope="col" colspan="3"></th>
-    </tr>
-  </thead>
+<% if @videos.count > 0 %>
+  <div class="table-responsive"> 
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Url</th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @videos.each do |video| %>
-      <tr>
-        <td><%= video.name %></td>
-        <td><%= video.url %></td>
-        <td><%= link_to "<i class='fas fa-info-circle'></i>".html_safe, video %></td>
-        <td><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_video_path(video) %></td>
-        <td><%= link_to "<i class='fas fa-trash'></i>".html_safe, video, method: :delete, data: { confirm: 'Deseja excluir o vídeo?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @videos.each do |video| %>
+          <tr>
+            <td><%= video.name %></td>
+            <td><%= video.url %></td>
+            <td><%= link_to "<i class='fas fa-info-circle'></i>".html_safe, video %></td>
+            <td><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_video_path(video) %></td>
+            <td><%= link_to "<i class='fas fa-trash'></i>".html_safe, video, method: :delete, data: { confirm: 'Deseja excluir o vídeo?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+Não existe(m) vídeo(s) cadastrado(s)!
+<% end %>
+  
