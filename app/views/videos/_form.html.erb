@@ -7,7 +7,12 @@
 
   <div class="form-group">
     <%= form.label :url %>
-    <%= form.text_field :url, placeholder: 'Url', class: 'form-control', required: true %>
+    <div class="input-group mb-3">
+      <%= form.text_field :url, placeholder: 'Url', class: 'form-control', required: true,  aria_describedby: 'basic-addon2' %>
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">.m3u8</span>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">

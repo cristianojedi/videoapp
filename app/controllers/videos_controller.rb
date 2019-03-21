@@ -29,6 +29,8 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params.merge(user: current_user))
 
+    p @video
+
     respond_to do |format|
       if @video.save
         format.html { redirect_to list_videos_path, notice: 'Vídeo cadastrado com sucesso.' }
