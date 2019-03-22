@@ -57,6 +57,33 @@ RSpec.describe VideosController, type: :controller do
       end
     end
 
+    describe 'GET view' do
+      it 'rota' do
+        is_expected.to route(:get, '/videos/view/1').to(action: :view, id: 1)
+      end
+
+      it 'responde 200' do
+        sign_in @user
+        get :view, params: { id: @video.id }
+        expect(response).to have_http_status(200)
+      end
+
+      it 'registro video' do
+        sign_in @user
+        get :view, params: { id: @video.id }
+        expect(assigns(:video)) == eq(@video)
+      end
+
+      it 'registro video não existe' do
+        sign_in @user
+        video_params = attributes_for(:video)
+        post :create, params: { video: video_params }
+        video = Video.last
+        get :view, params: { id: video.id }
+        expect(assigns(:video)) != eq(0)
+      end
+    end
+
     describe 'GET list' do
       it 'rota' do
         is_expected.to route(:get, '/videos/list').to(action: :list)
@@ -80,19 +107,19 @@ RSpec.describe VideosController, type: :controller do
         is_expected.to route(:post, '/videos').to(action: :create)
       end
 
-      it 'resposta 201' do
-        video_params = attributes_for(:video)
-        sign_in @user
-        post :create, params: { video: video_params }
-        expect(response).to have_http_status(201)
-      end
-
       it 'válido' do
         video_params = attributes_for(:video)
         sign_in @user
         expect {
           post :create, params: { video: video_params }
         }.to change(Video, :count).by(1)
+      end
+
+      it "válido redirect lista de vídeos" do
+        video_params = attributes_for(:video)
+        sign_in @user
+        post :create, params: { video: video_params }
+        expect(response).to redirect_to list_videos_path
       end
 
       it 'inválido sem name' do
@@ -115,21 +142,6 @@ RSpec.describe VideosController, type: :controller do
     describe 'PUT update' do
       it 'rota' do
         is_expected.to route(:put, '/videos/1').to(action: :update, id: 1)
-      end
-
-      it 'resposta 200' do
-        video_params = attributes_for(:video)
-        sign_in @user
-        put :update, params: { id: @video.id, video: video_params }
-        expect(response).to have_http_status(200)
-      end
-
-      it 'válido' do
-        video_params = attributes_for(:video)
-        sign_in @user
-        expect {
-          put :update, params: { id: @video.id, video: video_params }
-        }.to change(Video, :count).by(0)
       end
 
       it 'válido' do
@@ -161,6 +173,25 @@ RSpec.describe VideosController, type: :controller do
       it 'rota' do
         is_expected.to route(:delete, '/videos/1').to(action: :destroy, id: 1)
       end
+    end
+
+    it 'válido' do
+      sign_in @user
+      video_params = attributes_for(:video)
+      post :create, params: { video: video_params }
+      video = Video.last
+      expect{
+        delete :destroy, params: { id: video.id }     
+      }.to change(Video,:count).by(-1)
+    end
+
+    it 'válido redirect lista de vídeos' do
+      sign_in @user
+      video_params = attributes_for(:video)
+      post :create, params: { video: video_params }
+      video = Video.last
+      delete :destroy, params: { id: video.id } 
+      expect(response).to redirect_to list_videos_path
     end
   end
 end

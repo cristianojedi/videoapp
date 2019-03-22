@@ -1,41 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Lista de Vídeos</h1>
-
 <div class="container">
-  <div class="row">
-    <% if @videos.count > 0 %>
-      <% @videos.each do |video| %>
-        <div class="col-md-4">
-          <br>
-          <div class="card text-center">
-            <div class="card-header">
-              <%= video.name %>
-            </div>
-            <div class="card-body">
-              <div class="wrapper">
-                <div class="videocontent">
-                  <video
-                    class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"
-                    preload="auto"
-                    width= "800"
-                    data-setup='{"fluid": true}'>
-                    <source
-                      src= "<%= video.url %>"
-                      type="application/x-mpegURL">
-                    </video>
-                    <br>
-                    <p class="lead text-center">
-                      <%= link_to "<i class='fas fa-info-eye'></i> Visualizar".html_safe, view_video_path(video), class: 'btn btn-info btn-sm' %>
-                    </p>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Lista de Vídeos</h1>
+
+  <div class="container">
+    <div class="row">
+      <% if @videos.count > 0 %>
+        <% @videos.each do |video| %>
+          <div class="col-md-4">
+            <br>
+            <div class="card text-center">
+              <div class="card-header">
+                <%= video.name %>
+              </div>
+              <div class="card-body">
+                <div class="wrapper">
+                  <div class="videocontent">
+                    <video
+                      class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"
+                      preload="auto"
+                      width= "800"
+                      data-setup='{"fluid": true}'>
+                      <source
+                        src= "<%= video.url %>"
+                        type="application/x-mpegURL">
+                      </video>
+                      <br>
+                      <p class="lead text-center">
+                        <%= link_to "<i class='fas fa-info-eye'></i> Visualizar".html_safe, view_video_path(video), class: 'btn btn-info btn-sm' %>
+                      </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+      Não existe(m) vídeo(s) cadastrado(s)!
       <% end %>
-    <% else %>
-    Não existe(m) vídeo(s) cadastrado(s)!
-    <% end %>
+    </div>
   </div>
 </div>

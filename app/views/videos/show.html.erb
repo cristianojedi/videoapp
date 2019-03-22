@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @video.name %>
-</p>
+  <p>
+    <strong>Nome:</strong>
+    <%= @video.name %>
+  </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @video.url %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @video.url %>
+  </p>
 
-<%= link_to 'Alterar', edit_video_path(@video), class: 'btn btn-primary' %>
-<%= link_to 'Voltar', list_videos_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Alterar', edit_video_path(@video), class: 'btn btn-primary' %>
+  <%= link_to 'Voltar', list_videos_path, class: 'btn btn-secondary' %>
+</div>
